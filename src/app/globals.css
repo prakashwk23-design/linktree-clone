@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* The live SQLite database lives here; never scan its WAL/SHM files for classes. */
+@source not "../../data";
+
+@theme {
+  --color-chartreuse: #d2e823;
+  --color-shade: #1e2330;
+  --color-shade-soft: #394154;
+  --color-forest: #254f1a;
+  --color-cobalt: #2665d6;
+  --color-oxblood: #780016;
+  --color-sage: #e8efd6;
+  --color-chalk: #f3f3f1;
+  --color-chalk-hover: #e9e9e6;
+  --color-blush: #e9c0e9;
+  --color-grape: #502274;
+  --color-grape-deep: #3d1a5a;
+  --color-lilac: #d9c7ff;
+  --color-violet: #7b2cbf;
+  --color-violet-bright: #8b3dff;
+  --color-coral: #ff7a59;
+  --color-hairline: rgba(30, 35, 48, 0.12);
+  --color-hairline-soft: rgba(30, 35, 48, 0.08);
+  --color-inverse: #1e2330;
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-space: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+
+  --radius-pill: 9999px;
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-delayed: float 9s ease-in-out 1.2s infinite;
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-pop: pop 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-rise: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--float-rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-14px) rotate(var(--float-rotate, 0deg));
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --background: #f3f3f1;
+  --foreground: #1e2330;
+}
+
+* {
+  border-color: var(--color-hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #d2e823;
+  color: #1e2330;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.phone-shadow {
+  box-shadow:
+    0 50px 100px -30px rgba(15, 18, 28, 0.45),
+    0 20px 40px -20px rgba(15, 18, 28, 0.35);
+}
+
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid #1e2330;
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
